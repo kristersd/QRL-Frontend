@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import RegisterService from "../../services/api/auth/RegisterService";
+import {Link} from "react-router-dom";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -22,7 +23,7 @@ export const Register = () => {
     const [matchPassword, setMatchPassword] = useState('');
     const [validMatch, setValidMatch] = useState(false);
 
-    const [errorMessages, setErrorMessages] = useState(["Invalid username", "Invalid password"]);
+    const [errorMessages, setErrorMessages] = useState([]);
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
@@ -79,21 +80,20 @@ export const Register = () => {
 
     return (
 		<>
-            <div className={'w-full min-h-screen flex justify-center items-center flex-wrap bg-blue-gradient '}>
-
-                { success ? (
-
-                    <div className={'w-[475px] rounded bg-blue-normal'}>
-                        <h1>Successfully Registered</h1>
+            <div className={'register-page-container'}>
+                {success ? (
+                    <div className={'success-message-container'}>
+                        <h1>Success!</h1>
+                        <p>
+                            <Link to={'/login'}>Sign in</Link>
+                        </p>
                     </div>
-
                 ) : (
+                    <div className={'register-form-container'}>
 
-                    <div className={'w-[475px] flex flex-wrap bg-blue-light rounded p-5 shadow-xl'}>
+                        <h1>Register</h1>
 
-                        <h1 className={'block w-full h-[50px] text-4xl text-off-white font-bold text-center'}>Register</h1>
-
-                        <div className={'block w-full text-2xl'}>
+                        <div className="error-message-container">
                             { errorMessages.map(error => (
                                 <p>
                                     {error}
@@ -101,7 +101,7 @@ export const Register = () => {
                             )) }
                         </div>
 
-                        <form onSubmit={ handleSubmit }>
+                        <form onSubmit={handleSubmit}>
 
                             <input
                                 type="text"
@@ -112,17 +112,11 @@ export const Register = () => {
                                 onChange={(e) => setName(e.target.value)}
                                 value={name}
                                 required
-                                className={name && validName ?
-                                    "w-full bg-blue-light text-off-white p-1 mt-5 border-b-2 border-b-off-white focus:outline-none" :
-                                    "w-full bg-blue-light text-off-white p-1 mt-5 border-b-2 border-lime-700 focus:outline-none"
-                                }
+                                className={name && validName ? "valid" : ""}
                             />
 
-                            <div className={"overflow-hidden"}>
-                                <p className={name && !validName ?
-                                    "box-content border-off-white border-2 mt-2 p-2 transition-max-height text-off-white duration-700 max-h-[400px] delay-300" :
-                                    "box-content border-off-white border-2 mt-2 p-2 transition-max-height text-off-white duration-700 max-h-0 h-0"
-                                }>
+                            <div className={name && !validName ? "enabled input-info-container" : "disabled input-info-container"}>
+                                <p>
                                     4 to 24 characters.<br />
                                     Must begin with a letter.<br />
                                     Letters, numbers, underscores, hyphens allowed.
@@ -137,14 +131,11 @@ export const Register = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 value={username}
                                 required
-                                className={username && validUsername ?
-                                    "w-full bg-blue-normal" :
-                                    "w-full bg-blue-normal"
-                                }
+                                className={username && validUsername ? "valid" : ""}
                             />
 
-                            <div className={"overflow-hidden"}>
-                                <p className={username && !validUsername ? "transition-max-height duration-700 max-h-[400px] delay-300" : "transition-max-height duration-700 max-h-0"}>
+                            <div className={username && !validUsername ? "enabled input-info-container" : "disabled input-info-container"}>
+                                <p>
                                     4 to 24 characters.<br />
                                     Must begin with a letter.<br />
                                     Letters, numbers, underscores, hyphens allowed.
@@ -159,16 +150,13 @@ export const Register = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
                                 required
-                                className={email && validEmail ?
-                                    "w-full " :
-                                    "w-full "
-                                }
+                                className={email && validEmail ? "valid" : ""}
                             />
 
-                            <div className={"overflow-hidden"}>
-                                <p className={email && !validEmail ? "transition-max-height duration-700 max-h-[400px] delay-300" : "transition-max-height duration-700 max-h-0"}>
+                            <div className={email && !validEmail ? "enabled input-info-container" : "disabled input-info-container"}>
+                                <p>
                                     Must follow email format<br />
-                                    Example: qrl@gmail.com
+                                    Example: vrl@gmail.com
                                 </p>
                             </div>
 
@@ -179,14 +167,11 @@ export const Register = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 value={password}
                                 required
-                                className={validPassword ?
-                                    "w-full " :
-                                    "w-full "
-                                }
+                                className={validPassword ? "valid" : ""}
                             />
 
-                            <div className={"overflow-hidden"}>
-                                <p className={password && !validPassword ? "transition-max-height duration-700 max-h-[400px] delay-300" : "transition-max-height duration-700 max-h-0"}>
+                            <div className={password && !validPassword ? "enabled input-info-container" : "disabled input-info-container"}>
+                                <p>
                                     8 to 24 characters.<br />
                                     Must include uppercase and lowercase letters, a number and a special character.<br />
                                     Allowed special characters: ! @ # $ %
@@ -200,14 +185,11 @@ export const Register = () => {
                                 onChange={(e) => setMatchPassword(e.target.value)}
                                 value={matchPassword}
                                 required
-                                className={validPassword && validMatch ?
-                                    "w-full " :
-                                    "w-full "
-                                }
+                                className={validPassword && validMatch ? "valid" : ""}
                             />
 
-                            <div className={"overflow-hidden"}>
-                                <p  className={matchPassword && !validMatch ? "transition-max-height duration-700 max-h-[400px] delay-300" : "transition-max-height duration-700 max-h-0"}>
+                            <div className={!validMatch ? "enabled input-info-container" : "disabled input-info-container"}>
+                                <p>
                                     Must match the first password input field.
                                 </p>
                             </div>
@@ -215,10 +197,13 @@ export const Register = () => {
                             <button disabled={!validUsername || !validPassword || !validMatch }>Sign Up</button>
 
                         </form>
+
+                        <p className={'sign-in-link'}>
+                            Already registered? <Link to={'/login'}>Sign in</Link>
+                        </p>
                     </div>
                 )}
             </div>
-
         </>
 	)
 }

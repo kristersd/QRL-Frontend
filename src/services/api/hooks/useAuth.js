@@ -1,0 +1,5 @@
+function setPermissions (permissions) {
+
+
+
+}

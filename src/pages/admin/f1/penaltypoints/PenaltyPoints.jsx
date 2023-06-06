@@ -1,0 +1,5 @@
+export function PenaltyPoints() {
+	return (
+		<></>
+	)
+}

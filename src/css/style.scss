@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', Calibri, serif;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 0 0 15px 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 0 0 15px 15px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #111111;
+    border-radius: 15px;
+  }
+}
+
+//----------------------------------------------------------------------------------------//
+  // Auth                                                                               //
+//----------------------------------------------------------------------------------------//
+@import 'scss/auth/login';
