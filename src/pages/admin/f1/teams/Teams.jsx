@@ -158,7 +158,7 @@ export function Teams() {
             )}
 
             { edit ? (
-                <TeamsEdit id={editProps[0]} name={editProps[1]} fullName={editProps[2]} powerUnitId={editProps[3]} setEdit={setEdit} />
+                <TeamsEdit teamId={editProps[0]} teamName={editProps[1]} teamFullName={editProps[2]} teamPowerUnitId={editProps[3]} setEdit={setEdit} />
             ) : (
                 <></>
             )}

@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  font-family: "Poppins", Calibri, serif;
+}
+* ::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 0 0 15px 15px;
+}
+* ::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 0 0 15px 15px;
+}
+* ::-webkit-scrollbar-thumb {
+  background: #111111;
+  border-radius: 15px;
+}
+
+.register-page-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #00B4DB;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0083B0, #00B4DB);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.register-page-container .success-message-container {
+  box-shadow: rgba(17, 17, 26, 0.1) 0 4px 16px, rgba(17, 17, 26, 0.05) 0 8px 32px;
+  border-radius: 10px;
+  background-color: white;
+  width: clamp(250px, 80vw, 450px);
+}
+.register-page-container .success-message-container h1 {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  color: #0083B0;
+}
+.register-page-container .success-message-container p {
+  width: calc(100% - 20px);
+  margin: 25px 10px 15px 10px;
+  text-align: center;
+}
+.register-page-container .success-message-container p a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #0083B0;
+}
+.register-page-container .register-form-container {
+  box-shadow: rgba(17, 17, 26, 0.1) 0 4px 16px, rgba(17, 17, 26, 0.05) 0 8px 32px;
+  border-radius: 10px;
+  background-color: white;
+  width: clamp(250px, 80vw, 450px);
+}
+.register-page-container .register-form-container h1 {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 24pt;
+  color: #0083B0;
+}
+.register-page-container .register-form-container .error-message-container {
+  margin: 10px 10px 0 10px;
+  width: calc(100% - 20px);
+}
+.register-page-container .register-form-container .error-message-container p {
+  margin-top: 10px;
+  background-color: #e55f5f;
+  padding: 10px 0;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+}
+.register-page-container .register-form-container form {
+  width: 100%;
+}
+.register-page-container .register-form-container form .input-info-container {
+  overflow: hidden;
+}
+.register-page-container .register-form-container form .input-info-container p {
+  margin: 10px 10px 0 10px;
+  width: calc(100% - 20px);
+  background-color: #408bec;
+  padding: 10px 0;
+  border: 1px solid #0a30f4;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+.register-page-container .register-form-container form input[type=text], .register-page-container .register-form-container form input[type=password] {
+  margin: 20px 10px 0 10px;
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #0083B0;
+  font-size: 14pt;
+}
+.register-page-container .register-form-container form input[type=text]:focus, .register-page-container .register-form-container form input[type=password]:focus {
+  outline: none;
+}
+.register-page-container .register-form-container form .valid {
+  border-bottom: 2px solid #0dca0d !important;
+}
+.register-page-container .register-form-container form .invalid {
+  border-bottom: 2px solid #e60808 !important;
+}
+.register-page-container .register-form-container form .enabled {
+  max-height: 400px;
+  transition: max-height 0.75s ease;
+  transition-delay: 0.5s;
+}
+.register-page-container .register-form-container form .disabled {
+  max-height: 0;
+  transition: max-height 0.5s ease;
+}
+.register-page-container .register-form-container form button {
+  background: #00B4DB;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0083B0, #00B4DB);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-size: 16pt;
+  width: calc(100% - 20px);
+  margin: 25px 10px 0 10px;
+  padding: 10px 0;
+  border: none;
+  color: white;
+  border-radius: 50px;
+}
+.register-page-container .register-form-container form button[disabled] {
+  filter: brightness(75%);
+}
+.register-page-container .register-form-container .sign-in-link {
+  width: calc(100% - 20px);
+  margin: 25px 10px 15px 10px;
+  text-align: center;
+}
+.register-page-container .register-form-container .sign-in-link a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #0083B0;
+}
+
+/*# sourceMappingURL=style.css.map */

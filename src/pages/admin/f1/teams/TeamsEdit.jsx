@@ -1,19 +1,19 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import {XSvg} from "../../../../components/svgs/XSvg";
 import PowerUnitsService from "../../../../services/api/admin/f1/PowerUnitsService";
 import TeamsService from "../../../../services/api/admin/f1/TeamsService";
 
-export function TeamsEdit({id, name, fullName, powerUnitId, setEdit}) {
+export function TeamsEdit({teamId, teamName, teamFullName, teamPowerUnitId, setEdit}) {
 
     const [powerUnits, setPowerUnits] = useState([]);
 
     const [error, setError] = useState(false);
+    
+    const [name, setName] = useState(teamName);
+    const [fullName, setFullName] = useState(teamFullName);
+    const [powerUnitId, setPowerUnitId] = useState(teamPowerUnitId);
 
-    const [nameInput, setName] = useState(name);
-    const [fullNameInput, setFullName] = useState(fullName);
-    const [powerUnitIdInput, setPowerUnitId] = useState(powerUnitId);
-
-    useEffect(() => {
+    useLayoutEffect(() => {
 
             PowerUnitsService.getAllPowerUnits()
                 .then(response => {
@@ -25,28 +25,25 @@ export function TeamsEdit({id, name, fullName, powerUnitId, setEdit}) {
                 })
     }, []);
 
+    useEffect(() => () => console.log("unmount"), []);
+
     const onCloseClick = useCallback(() => {
-        console.log(nameInput);
         setEdit(false);
-    }, []);
+    }, [setEdit]);
 
     const updateTeam = useCallback(() => {
 
-        console.log(nameInput);
-        console.log(fullNameInput);
-        console.log(powerUnitIdInput);
-
         TeamsService.updateTeam(
             {
-                id: id,
-                name: nameInput,
-                full_name: fullNameInput,
-                power_unit_id: powerUnitIdInput,
+                id: teamId,
+                name: name,
+                full_name: fullName,
+                power_unit_id: powerUnitId
             }
         )
             .then(response => {
                 console.log(response.data);
-                setEdit(false);
+                // setEdit(false);
             })
             .catch(error => {
                 console.log(error);
@@ -71,10 +68,10 @@ export function TeamsEdit({id, name, fullName, powerUnitId, setEdit}) {
                         </label>
                         <input
                             type="text"
-                            defaultValue={ name }
+                            value={ name }
                             id={'name'}
                             name={'name'}
-                            onChange={(event) => setName(event.target.value)}
+                            onChange={event => setName(event.target.value)}
                             className={'w-full p-4 border-2 border-blue-normal rounded-xl focus:border-blue-dark focus:outline-none'} />
 
                         <label htmlFor="{'fullName'}" className={'w-full mt-8 ml-4 mb-3'}>
@@ -82,7 +79,7 @@ export function TeamsEdit({id, name, fullName, powerUnitId, setEdit}) {
                         </label>
                         <input
                             type="text"
-                            defaultValue={ fullName }
+                            value={ fullName }
                             id={'fullName'}
                             name={'fullName'}
                             onChange={(event) => setFullName(event.target.value)}

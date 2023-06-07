@@ -13,6 +13,9 @@ const TeamsService = {
     },
 
     updateTeam: function (data) {
+
+        console.log(data);
+
         return axios.post(constants.api_address + 'admin/f1/team/update', data, {
             headers: {
                 'Content-Type': 'application/json',
